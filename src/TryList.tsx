@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-type mapProps = ReturnType<typeof MapStateToProps>;
+type MapProps = ReturnType<typeof MapStateToProps>;
 
-type Props = mapProps;
+type Props = MapProps;
 
 class TryList extends Component<Props> {
   render() {
@@ -40,4 +40,4 @@ const MapStateToProps = (state: any) => ({
   tries: state.tries
 });
 
-export default connect<mapProps>(MapStateToProps)(TryList);
+export default connect<MapProps>(MapStateToProps)(TryList);

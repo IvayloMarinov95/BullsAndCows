@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { ActionTypes } from "./actions";
 
 type MapStateToProps = ReturnType<typeof MapStateToProps>;
-type mapDispatch = ReturnType<typeof mapDispatch>;
+type MapDispatch = ReturnType<typeof MapDispatch>;
 
-type Props = MapStateToProps & mapDispatch;
+type Props = MapStateToProps & MapDispatch;
 
 class NewGame extends Component<Props> {
   random4DigitNumberNotStartingWithZero = () => {
-    var digits = "123456789".split(""),
+    const digits = "123456789".split(""),
       first = this.shuffle(digits).pop();
     // Add "0" to the array
     digits.push("0");
@@ -24,7 +24,7 @@ class NewGame extends Component<Props> {
 
   shuffle = (o: any) => {
     for (
-      var j, x, i = o.length;
+      let j, x, i = o.length;
       i;
       j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x
     );
@@ -53,7 +53,7 @@ class NewGame extends Component<Props> {
   }
 }
 
-const mapDispatch = (dispatch: any) => ({
+const MapDispatch = (dispatch: any) => ({
   generateNumber: (data: any) =>
     dispatch({ type: ActionTypes.GENERATE_NUMBER, payload: data })
 });
@@ -62,7 +62,7 @@ const MapStateToProps = (state: any) => ({
   generatedNumber: state.generatedNumber
 });
 
-export default connect<MapStateToProps, mapDispatch>(
+export default connect<MapStateToProps, MapDispatch>(
   MapStateToProps,
-  mapDispatch
+  MapDispatch
 )(NewGame);

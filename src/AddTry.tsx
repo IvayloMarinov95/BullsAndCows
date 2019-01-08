@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { ActionTypes } from "./actions";
 
 type MapStateToProps = ReturnType<typeof MapStateToProps>;
-type mapDispatch = ReturnType<typeof mapDispatch>;
+type MapDispatch = ReturnType<typeof MapDispatch>;
 
-type Props = MapStateToProps & mapDispatch;
+type Props = MapStateToProps & MapDispatch;
 
 class AddTry extends Component<Props> {
   state = {
@@ -45,20 +45,6 @@ class AddTry extends Component<Props> {
       this.setState({ disabled: true });
       alert("Congratulations!");
     }
-
-    // let userNumbers = [];
-    // for (let obj of this.props.tries) {
-    //   userNumbers = obj.guess.split("");
-    // }
-    // // if (
-    // //   splittedGuessed[0] === userNumbers[0] &&
-    // //   splittedGuessed[1] === userNumbers[1] &&
-    // //   splittedGuessed[2] === userNumbers[2] &&
-    // //   splittedGuessed[3] === userNumbers[3]
-    // // ) {
-    // //   console.log("HERE");
-    // //   return;
-    // // }
   };
 
   render() {
@@ -86,7 +72,7 @@ const MapStateToProps = (state: any) => ({
   guessedNumber: state.guessedNumber
 });
 
-const mapDispatch = (dispatch: any) => ({
+const MapDispatch = (dispatch: any) => ({
   guessNumber: (data: any) =>
     dispatch({
       type: ActionTypes.GUESS_NUMBER,
@@ -99,7 +85,7 @@ const mapDispatch = (dispatch: any) => ({
     })
 });
 
-export default connect<MapStateToProps, mapDispatch>(
+export default connect<MapStateToProps, MapDispatch>(
   MapStateToProps,
-  mapDispatch
+  MapDispatch
 )(AddTry);
