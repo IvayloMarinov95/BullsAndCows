@@ -36,7 +36,8 @@ class AddTry extends Component<Props> {
       }
     }
     const newTry = [...this.props.tries];
-    newTry.unshift({ guess: guessed, cows: totalCows, bulls: totalBulls });
+    if (guessed !== "")
+      newTry.unshift({ guess: guessed, cows: totalCows, bulls: totalBulls });
 
     if (totalBulls !== 4) {
       this.props.addTry(newTry);
