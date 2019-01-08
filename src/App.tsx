@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, ChangeEvent } from "react";
+import "./App.css";
+import TryList from "./TryList";
+import AddTry from "./AddTry";
+import NewGame from "./NewGame";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <NewGame />
+        <AddTry />
+        <table className="Table">
+          <thead>
+            <tr>
+              <td>Try</td>
+              <td>Guess</td>
+              <td>Result</td>
+            </tr>
+          </thead>
+          <TryList />
+        </table>
       </div>
     );
   }
