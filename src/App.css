@@ -86,7 +86,7 @@ input {
   border: none;
   border-radius: 8px;
 }
-.Image {
+/* .Image {
   position: absolute;
   z-index: 0;
   opacity: 0.2;
@@ -94,4 +94,4 @@ input {
   right: 860px;
   width: 385px;
   bottom: 320px;
-}
+} */

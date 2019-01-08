@@ -10,11 +10,6 @@ class TryList extends Component<Props> {
     console.log(this.props);
     return (
       <tbody>
-        <img
-          src="./Chicago_Bulls_Logo_04-831x392.png"
-          alt=""
-          className="Image"
-        />
         {this.props.tries
           ? this.props.tries.map((t: any, i: any) => {
               return (
