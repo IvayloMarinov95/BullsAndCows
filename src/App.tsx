@@ -1,8 +1,8 @@
 import React, { Component, ChangeEvent } from "react";
 import "./App.css";
-import TryList from "./TryList";
 import AddTry from "./AddTry";
 import NewGame from "./NewGame";
+import TryTable from "./TryTable";
 
 class App extends Component {
   render() {
@@ -10,16 +10,7 @@ class App extends Component {
       <div className="App">
         <NewGame />
         <AddTry />
-        <table className="Table">
-          <thead>
-            <tr>
-              <td>Try</td>
-              <td>Guess</td>
-              <td>Result</td>
-            </tr>
-          </thead>
-          <TryList />
-        </table>
+        <TryTable />
       </div>
     );
   }
