@@ -11,7 +11,7 @@ class TryList extends Component<Props> {
     return (
       <tbody>
         {this.props.tries
-          ? this.props.tries.map((t: any, i: any) => {
+          ? this.props.tries.map((t: any, i: number) => {
               return (
                 <tr className="Button" key={i}>
                   <td>{this.props.tries.length - i}</td>
@@ -32,7 +32,7 @@ class TryList extends Component<Props> {
 }
 
 const MapStateToProps = (state: any) => ({
-  tries: state.tries
+  tries: state.tries,
 });
 
 export default connect<MapProps>(MapStateToProps)(TryList);

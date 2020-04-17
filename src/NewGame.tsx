@@ -1,6 +1,6 @@
-import React, { Component, ChangeEvent } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ActionTypes } from "./actions";
+import { generateNumber } from "./actions";
 
 type MapStateToProps = ReturnType<typeof MapStateToProps>;
 type MapDispatch = ReturnType<typeof MapDispatch>;
@@ -22,7 +22,7 @@ class NewGame extends Component<Props> {
     );
   };
 
-  shuffle = (o: any) => {
+  shuffle = (o: Array<string>) => {
     for (
       let j, x, i = o.length;
       i;
@@ -54,12 +54,11 @@ class NewGame extends Component<Props> {
 }
 
 const MapDispatch = (dispatch: any) => ({
-  generateNumber: (data: any) =>
-    dispatch({ type: ActionTypes.GENERATE_NUMBER, payload: data })
+  generateNumber: (data: number) => dispatch(generateNumber(data)),
 });
 
 const MapStateToProps = (state: any) => ({
-  generatedNumber: state.generatedNumber
+  generatedNumber: state.generatedNumber,
 });
 
 export default connect<MapStateToProps, MapDispatch>(

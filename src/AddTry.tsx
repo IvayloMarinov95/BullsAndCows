@@ -1,28 +1,30 @@
-import React, { Component, ChangeEvent } from "react";
+import React, { Component, ChangeEvent, FormEvent } from "react";
 import { connect } from "react-redux";
-import { ActionTypes } from "./actions";
+import { guessNumber, addTry } from "./actions";
 
 type MapStateToProps = ReturnType<typeof MapStateToProps>;
 type MapDispatch = ReturnType<typeof MapDispatch>;
 
 type Props = MapStateToProps & MapDispatch;
 
-class AddTry extends Component<Props> {
+interface State {
+  disabled: boolean;
+}
+
+class AddTry extends Component<Props, State> {
   state = {
-    disabled: false
+    disabled: false,
   };
 
-  changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const attemptNumber = e.target.value;
     this.props.guessNumber(attemptNumber);
   };
 
-  onSubmit = (e: any) => {
+  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const random = this.props.generatedNumber.toString();
-    console.log(typeof random);
     const splittedRandom = random.split("");
-    console.log(splittedRandom);
     const guessed = this.props.guessedNumber;
     const splittedGuessed = guessed.split("");
 
@@ -36,26 +38,29 @@ class AddTry extends Component<Props> {
       }
     }
     const newTry = [...this.props.tries];
-    if (guessed !== "")
+    if (guessed !== "" && guessed.length === 4) {
       newTry.unshift({ guess: guessed, cows: totalCows, bulls: totalBulls });
+    } else {
+      alert("Input must be 4 characters long!");
+    }
 
     if (totalBulls !== 4) {
       this.props.addTry(newTry);
     } else {
       this.props.addTry(newTry);
       this.setState({ disabled: true });
-      alert("Congratulations!");
+      alert("Congratulations! -> " + guessed);
     }
   };
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <p>Enter number:</p>
         <input
           type="text"
           placeholder="****"
-          onChange={this.changeHandler}
+          onChange={this.handleChange}
           maxLength={4}
           disabled={this.state.disabled}
         />
@@ -70,20 +75,12 @@ class AddTry extends Component<Props> {
 const MapStateToProps = (state: any) => ({
   generatedNumber: state.generatedNumber,
   tries: state.tries,
-  guessedNumber: state.guessedNumber
+  guessedNumber: state.guessedNumber,
 });
 
 const MapDispatch = (dispatch: any) => ({
-  guessNumber: (data: any) =>
-    dispatch({
-      type: ActionTypes.GUESS_NUMBER,
-      payload: data
-    }),
-  addTry: (data: any) =>
-    dispatch({
-      type: ActionTypes.ADD_TRY,
-      payload: data
-    })
+  guessNumber: (data: string) => dispatch(guessNumber(data)),
+  addTry: (data: Array<string>) => dispatch(addTry(data)),
 });
 
 export default connect<MapStateToProps, MapDispatch>(

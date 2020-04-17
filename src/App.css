@@ -1,13 +1,12 @@
 .App {
+  -ms-overflow-style: none;
+  margin: 20px auto;
+  align-self: center;
   text-align: center;
   border: 5px solid;
-  margin-top: 2%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  width: 20%;
-  margin-left: 35%;
+  padding: 10px 0 10px;
+  width: 400px;
   height: 600px;
-  max-height: 80%;
   overflow: scroll;
   background-image: linear-gradient(
     to left bottom,
@@ -25,48 +24,41 @@
     #0c256b
   );
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 .Table {
   margin-left: auto;
   margin-right: auto;
 }
-
 input {
   margin-bottom: 2%;
 }
-
 td {
   padding: 10px 90px 10px 10px;
 }
-
 td:last-of-type {
   padding-right: 0;
 }
-
 .TableHead {
   border-bottom: 1px solid black;
 }
-
 thead td:first-child,
 thead td:nth-child(2) {
   padding-left: 0px;
 }
-
 thead td {
   font-weight: bold;
   margin-left: 10%;
 }
-
 input {
   text-align: center;
   width: 80px;
 }
-
 .Username {
   text-align: center;
   width: 100px;
 }
-
 .Button {
   background-image: linear-gradient(
     to bottom,
@@ -86,12 +78,3 @@ input {
   border: none;
   border-radius: 8px;
 }
-/* .Image {
-  position: absolute;
-  z-index: 0;
-  opacity: 0.2;
-  height: 480px;
-  right: 860px;
-  width: 385px;
-  bottom: 320px;
-} */
